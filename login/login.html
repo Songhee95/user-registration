@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>MySQL Login Test</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.3/flatly/bootstrap.min.css" />
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+<body>
+	<h1>MySQL Login</h1>
+	<br>
+	<form role="form">
+		<table>
+			<tr>
+				<td><label>ID: </label></td>
+				<td><input type="text" name="id" id="id"></td>
+			</tr>
+			<tr>
+				<td><label>PASSWORD: </label></td>
+				<td><input type="password" name="password" id="pwd"></td>
+			</tr>
+		</table>
+		<input type="submit" value="send" id="submit">
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	$("#submit").on("click", function(event){
+		event.preventDefault();
+		const user = {
+			id: $('#id').val(),
+			pwd: $("#pwd").val()
+		}
+		console.log(user);
+		$.post("/api/adduser", user, function(data){
+			console.log(data)
+		})
+	})
+</script>
