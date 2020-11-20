@@ -11,7 +11,7 @@ app.use(express.json());
 var pool=mysql.createPool({
     connectionLimit : 10, 
     host     : 'localhost',
-    port     : "3306",
+    port     : 3306,
     user     : 'root',
     password : "dmwm9191@A",
     database : 'test',
@@ -23,17 +23,17 @@ app.get('/', function(req,res){
 })
 
 let addUser = [];
+app.get('/api/adduser', function(req,res){
+    res.json(addUser);
+})
 app.post('/api/adduser', function(req,res){
-    console.log(req.body);
     addUser.push(req.body);
+    add(req.body.id, req.body.pwd);
 })
 
 var add = function(id, pwd){
-    console.log(id, pwd);
     pool.getConnection(function(err, conn){
         if(err) throw err;
-        const id = addUser.id;
-        const pwd = addUser.pwd;
         const query = conn.query("INSERT INTO user_info SET ?",
             {
                 user_id: id,
@@ -43,13 +43,6 @@ var add = function(id, pwd){
         pool.end();
     })
 }
-
-
-app.get('/api/adduser', function(req,res){
-    console.log('check')
-    res.json(addUser);
-})
-
 app.listen(PORT, function(){
     console.log("app listening on PORT : " + PORT);
 })

@@ -34,10 +34,13 @@
 		const user = {
 			id: $('#id').val(),
 			pwd: $("#pwd").val()
-		}
+		};
 		console.log(user);
 		$.post("/api/adduser", user, function(data){
 			console.log(data)
 		})
+
+		$('#id').val("");
+		$("#pwd").val("");
 	})
 </script>
