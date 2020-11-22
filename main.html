@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.3/flatly/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>MySQL: Main page </h1>
+        <form action="/login">
+            <button type="submit" id="login" class="btn btn-primary mb-2">Login</button>
+        </form>
+        <form action="/join">
+            <button type="submit" id="sign-in" class="btn btn-primary mb-2">Sign in</button>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $("#login").on("click", function(){
+        var loginStatus = {
+            key: true
+        }
+        console.log(status);
+        $.post("/api/login",loginStatus, function(){
+        })
+        loginStatus.key = false;
+    })
+    $("#sign-in").on('click', function(){
+        var joinStatus = {
+            key: true
+        }
+        $.post("/api/join", joinStatus, function(){
+        })
+        joinStatus.key = false;
+    })
+</script>
