@@ -84,31 +84,6 @@ var add = function(name, email, id, pwd){
     })
 }
 
-// app.get('/api/adduser', function(req,res){
-//     res.json(addUser)
-// })
-// // app.get("/api/login", function(req, res){
-// //     res.json(userLogin);
-// // })
-
-// app.post('/api/adduser', function(req,res){
-//     addUser.push(req.body);
-//     add(req.body.name, req.body.email, req.body.id, req.body.pwd);
-// })
-// var add = function(name, email, id, pwd){
-//     pool.getConnection(function(err, conn){
-//         if(err) throw err;
-//         conn.query("INSERT INTO user_info SET ?",
-//             {
-//                 user_name: name,
-//                 user_email: email,
-//                 user_id: id,
-//                 user_pwd:pwd
-//             }, function(err, res){
-//                 if(err) throw err;
-//             })
-//     })
-// }
 app.listen(PORT, function(){
     console.log("app listening on PORT : " + PORT);
 })
