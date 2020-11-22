@@ -42,6 +42,7 @@ connection.connect(function(err){
     app.post('/api/join', function(req,res){
         if(req.body.key ==="true"){
             console.log("join in begining");
+            joinin();
         }
     })
 })
@@ -52,6 +53,13 @@ var login = function(){
         console.log(req.body.userId);
         check(req.body.userId, req.body.userPwd);
 })
+};
+var joinin = function(){
+    app.post("/api/adduser", function(req,res){
+        console.log(req.body.name);
+        console.log(req.body.email);
+        add(req.body.name, req.body.email, req.body.id, req.body.pwd);
+    })
 }
 
 var check = function(id, pwd){
@@ -63,6 +71,16 @@ var check = function(id, pwd){
             console.log("no data found")
         }
         console.log("Hello " + res[0].user_name)
+    })
+}
+
+var add = function(name, email, id, pwd){
+    console.log("adding new user information");
+    var query = "INSERT INTO user_info (user_name, user_email, user_id, user_pwd) ";
+    query += "VALUES (?, ?, ?, ?)";
+    connection.query(query, [name, email, id, pwd], function(err, res){
+        if(err) throw err;
+        console.log(res);
     })
 }
 
